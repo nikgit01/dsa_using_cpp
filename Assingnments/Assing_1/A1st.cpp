@@ -17,7 +17,39 @@ class Array{
         int count();
         ~Array();
         int find(int);
+        int greatestElement();
+        int smallestElement();
+        void sort();
 };
+void Array::sort() {
+    for (int i = 0; i <= lastIndex; i++) {
+        for (int j = 0; j < lastIndex - i; j++) {
+            if (ptr[j] > ptr[j + 1]) {
+                // Swap elements if they are in the wrong order
+                int temp = ptr[j];
+                ptr[j] = ptr[j + 1];
+                ptr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int Array::smallestElement(){
+    int small=ptr[0];
+    for(int i=1; i<=lastIndex;i++){
+        if(ptr[i]<small)
+            small=ptr[i];
+    }
+    return small;
+}
+int Array::greatestElement(){
+    int big=ptr[0];
+    for(int i=1; i<=lastIndex; i++){
+        if(ptr[i]>big)
+            big=ptr[i];
+    }
+    return big;
+}
 int Array::find(int data)
 {
     for(int i=0; i<=lastIndex; i++)
@@ -101,26 +133,33 @@ int main()
 
     cout << endl;
     obj.append(10);
-    obj.append(20);
+    obj.append(80);
     obj.append(30);
-    obj.append(40);
-    obj.insert(2,25);
+    obj.append(30);
+    // obj.insert(2,25);
 
-    // Print elements before deletion
+    // // Print elements before deletion
+    // for(int i = 0; i < obj.count(); i++)
+    // {
+    //     cout << obj.get(i) << " ";
+    // }
+
+    // obj.del(3);
+    // obj.del(3);
+    // cout << endl;
+
+    // // Print elements after deletion
+    // for(int i = 0; i < obj.count(); i++)
+    // {
+    //     cout << obj.get(i) << " ";
+    // }
+    cout<<"the greatest elemnet is:"<<obj.greatestElement()<<endl;
+    cout<<"The smallest element is:"<<obj.smallestElement()<<endl;
+    obj.sort();
     for(int i = 0; i < obj.count(); i++)
     {
         cout << obj.get(i) << " ";
-    }
-
-    obj.del(3);
-    obj.del(3);
-    cout << endl;
-
-    // Print elements after deletion
-    for(int i = 0; i < obj.count(); i++)
-    {
-        cout << obj.get(i) << " ";
-    }
+    }   
 
     return 0;
 }
