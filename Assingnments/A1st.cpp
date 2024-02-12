@@ -44,18 +44,19 @@ bool Array::isFull()
 {
     return lastIndex==capacity-1;
 }
-void Array::del(int index)
-{
-    if(isEmpty())
-        cout<<endl<<"Array is empty";
-    else if(index<0 || index>lastIndex)
-        cout<<endl<<"Invalid Index";
-    else{
-        for(int i=index; i<lastIndex; i++)
-            ptr[i]=ptr[i+1];
-            lastIndex--;
+void Array::del(int index) {
+    if (isEmpty())
+        cout << endl << "Array is empty";
+    else if (index < 0 || index > lastIndex)
+        cout << endl << "Invalid Index";
+    else {
+        for (int i = index; i < lastIndex; i++)
+            ptr[i] = ptr[i + 1];
+        lastIndex--;
+        cout << endl << "Element at index " << index << " deleted.";
     }
 }
+
 void Array::edit(int index,int data)
 {
     if(index>=0 && index<=lastIndex)
@@ -97,10 +98,29 @@ Array::Array(int cap)
 int main()
 {
     Array obj(5);
-    if(obj.isEmpty())
-        cout<<"empty array";
 
-    cout<<endl;
+    cout << endl;
+    obj.append(10);
+    obj.append(20);
+    obj.append(30);
+    obj.append(40);
+    obj.insert(2,25);
+
+    // Print elements before deletion
+    for(int i = 0; i < obj.count(); i++)
+    {
+        cout << obj.get(i) << " ";
+    }
+
+    obj.del(3);
+    obj.del(3);
+    cout << endl;
+
+    // Print elements after deletion
+    for(int i = 0; i < obj.count(); i++)
+    {
+        cout << obj.get(i) << " ";
+    }
 
     return 0;
 }
