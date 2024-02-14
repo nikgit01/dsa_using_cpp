@@ -14,13 +14,49 @@ class Array{
         void del(int);
         bool isFull();
         int get(int);
+        void printArray();
         int count();
-        ~Array();
+            ~Array();
         int find(int);
         int greatestElement();
         int smallestElement();
         void sort();
+        int sumOfAll();
+        int avarage();
+        void rotate();
+        void duplicatDelete();
+
 };
+void Array::duplicatDelete() {
+    for(int i = 0; i <= lastIndex; i++) {
+        for(int j = i + 1; j <= lastIndex; j++) {
+            if(ptr[i] == ptr[j]) {
+                for(int k = j; k < lastIndex; k++) {
+                    ptr[k] = ptr[k + 1];
+                }
+                lastIndex--;
+                j--; // Decrement j to recheck the current position after removing the duplicate
+            }
+        }
+    }
+}
+void Array::rotate(){
+    int tem=ptr[lastIndex];
+    for(int i=lastIndex; i>=0;i--){
+        ptr[i]=ptr[i-1];
+    }
+    ptr[0]=tem;
+}
+int Array::avarage(){
+    return sumOfAll()/count();
+}
+int Array::sumOfAll(){
+    int sum=0;
+    for(int i=0; i<=lastIndex; i++)
+        sum = sum+ptr[i];
+
+    return sum;
+}
 void Array::sort() {
     for (int i = 0; i <= lastIndex; i++) {
         for (int j = 0; j < lastIndex - i; j++) {
@@ -64,6 +100,12 @@ Array::~Array()
 int Array::count()
 {
     return lastIndex+1;
+}
+void Array::printArray(){
+    for(int i=0; i<=lastIndex; i++){
+        cout<<ptr[i]<<" ";
+    }
+    cout<<endl;
 }
 int Array::get(int index)
 {
@@ -133,6 +175,7 @@ int main()
 
     cout << endl;
     obj.append(10);
+    obj.append(20);
     obj.append(80);
     obj.append(30);
     obj.append(30);
@@ -155,11 +198,18 @@ int main()
     // }
     cout<<"the greatest elemnet is:"<<obj.greatestElement()<<endl;
     cout<<"The smallest element is:"<<obj.smallestElement()<<endl;
-    obj.sort();
+    // obj.sort();
     for(int i = 0; i < obj.count(); i++)
     {
         cout << obj.get(i) << " ";
-    }   
+    }  
+    // cout<<endl<<obj.sumOfAll();
+    // cout<<endl<<obj.avarage()<<endl; 
+    // obj.rotate();
+    // obj.rotate();
+    cout<<endl;
+    obj.duplicatDelete();
+    obj.printArray();
 
     return 0;
 }

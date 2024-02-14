@@ -11,8 +11,53 @@ class Array
         void sort();
         int greatestElement();
         int smallestElement();
+        int search(int);
+        int sumOfAll();
+        int count();
+        int avarage();
+        void rotate();
+        void duplicatDelete();
 };
-int Array::smallestElement(){
+void Array::duplicatDelete(){   // code again q
+    for(int i=0; i<lastIndex-1; i++){
+        for(int j=i+1; j<=lastIndex; j++){
+            if(ptr[i]=ptr[j]){
+                for(int k=j; k<lastIndex; k++)
+                    ptr[k]=ptr[k+1];
+                lastIndex--;
+            }
+        }
+    }
+}
+void Array::rotate(){
+    int tem=lastIndex;
+    for(int i=lastIndex; i>=0;i--){
+        ptr[i]=ptr[i-1];
+    }
+}
+int Array::avarage(){
+    return sumOfAll()/count();
+}
+int Array::count(){
+    return lastIndex+1;
+}
+int Array::sumOfAll(){
+    int sum=0;
+    for(int i=0; i<=lastIndex; i++)
+        sum = sum+ptr[i];
+
+    return sum;
+}
+int Array::search(int element) {
+    for (int i = 0; i <= lastIndex; i++) {
+        if (ptr[i] == element) {
+            return i; // Return the index of the element if found
+        }
+    }
+    return -1; // Return -1 if the element is not found
+}
+
+int Array::smallestElement(){    //Question 3
     int small=ptr[0];
     for(int i=1; i<=lastIndex;i++){
         if(ptr[i]<small)
@@ -20,7 +65,7 @@ int Array::smallestElement(){
     }
     return small;
 }
-int Array::greatestElement(){
+int Array::greatestElement(){    //Question 2
     int big=ptr[0];
     for(int i=1; i<=lastIndex; i++){
         if(ptr[i]>big)
@@ -28,7 +73,7 @@ int Array::greatestElement(){
     }
     return big;
 }
-void Array::sort() {
+void Array::sort() {             // question 1
     for (int i = 0; i <= lastIndex; i++) {
         for (int j = 0; j < lastIndex - i; j++) {
             if (ptr[j] > ptr[j + 1]) {
