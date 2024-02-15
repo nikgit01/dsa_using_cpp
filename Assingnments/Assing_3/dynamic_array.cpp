@@ -12,7 +12,6 @@ class DynArray
         void append(int);
         void insert(int,int);
         void edit(int,int);
-        void del(int);
         bool isFull();
         int get(int);
         void printArray();
@@ -23,8 +22,20 @@ class DynArray
         void doubleArray();
         void halfArray();
         int size();
+        void del(int);
         ~DynArray();
 };
+void DynArray::del(int index){
+    if(isEmpty())
+        cout<<"Array is already full !!\n";
+    else if(index<0 || index<lastIndex)
+        cout<<"Invalid Index!!\n";
+    for(int i=index; i<lastIndex; i++)
+        ptr[i]=ptr[i+1];
+    lastIndex--;
+    if(capacity/2>=lastIndex+1 && capacity>1)
+        halfArray();
+}
 void DynArray::insert(int index, int data){
     int i;
     if(index<0 || index<lastIndex+1)
