@@ -1,4 +1,5 @@
 #include<iostream>
+#include "A1st.cpp"
 using namespace std;
 class Array
 {
