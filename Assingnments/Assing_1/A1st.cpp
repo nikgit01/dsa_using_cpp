@@ -18,7 +18,7 @@ class Array{
         int count();
             ~Array();
         int find(int);
-        int greatestElement();
+        // int greatestElement();
         int smallestElement();
         void sort();
         int sumOfAll();
@@ -78,14 +78,14 @@ int Array::smallestElement(){
     }
     return small;
 }
-int Array::greatestElement(){
-    int big=ptr[0];
-    for(int i=1; i<=lastIndex; i++){
-        if(ptr[i]>big)
-            big=ptr[i];
-    }
-    return big;
-}
+// int Array::greatestElement(){
+//     int big=ptr[0];
+//     for(int i=1; i<=lastIndex; i++){
+//         if(ptr[i]>big)
+//             big=ptr[i];
+//     }
+//     return big;
+// }
 int Array::find(int data)
 {
     for(int i=0; i<=lastIndex; i++)
@@ -169,7 +169,7 @@ Array::Array(int cap)
     lastIndex= -1;
     ptr=new int [capacity];
 }
-int main()
+/*int main()
 {
     Array obj(5);
 
@@ -196,7 +196,7 @@ int main()
     // {
     //     cout << obj.get(i) << " ";
     // }
-    cout<<"the greatest elemnet is:"<<obj.greatestElement()<<endl;
+    // cout<<"the greatest elemnet is:"<<obj.greatestElement()<<endl;
     cout<<"The smallest element is:"<<obj.smallestElement()<<endl;
     // obj.sort();
     for(int i = 0; i < obj.count(); i++)
@@ -212,4 +212,4 @@ int main()
     obj.printArray();
 
     return 0;
-}
+} */

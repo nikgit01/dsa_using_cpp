@@ -1,12 +1,21 @@
 #include "A1st.cpp"
-int greatest(Array obj){
+class ExtentdedArray:public Array
+{
+    public:
+        ExtentdedArray(int);
+        int greatest();
+};
+ExtentdedArray::ExtentdedArray(int cap):Array(cap){cout<<"Object created\n";}
+int ExtentdedArray:: greatest(){
     int max;
-    if(obj.isEmpty()){
+    if(isEmpty()){
         cout<<"The array was empty";
         return -1;
     }
-    max=obj.get(0);
-    for(int i=1; i<obj.count(); i++){
-
+    max=get(0);
+    for(int i=1; i<count(); i++){
+        if(max<get(i))
+            max=get(i);
     }
+    return max;
 }
