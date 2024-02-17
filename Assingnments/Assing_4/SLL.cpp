@@ -1,7 +1,67 @@
 #include<iostream>
+#include<stdio.h>
 using namespace std;
-class SSL
+struct node
 {
-    private:
-        
+    int item;
+    node *next;
 };
+class SLL
+{
+    private:  
+        node *start;
+    public:
+        SLL();
+        void insertAtStart(int);
+        void insertAtLast(int);
+        node* search(int);
+        void insertAfter(node *,int);
+        void deleteFirst();
+};
+void SLL::deleteFirst(){
+    node *t;
+    if(start){
+        t=start;
+        start=start->next;
+        delete t;
+    }
+}
+void SLL::insertAfter(node *ptr,int data){
+    node *n=new node;
+    n->item=data;
+    n->next=ptr->next;
+    ptr->next=n; 
+}
+node* SLL::search(int data){
+    node *t;
+    t=start;
+    while(t!=NULL){
+        if(t->item==data)
+            return t;
+        t=t->next;
+    }
+    return NULL;
+}
+void SLL::insertAtLast(int data){
+    node *t;
+    node *n=new node;
+    n->item=data;
+    n->next=NULL;
+    if(start==NULL)
+        start=n;
+    else{
+        t=start;
+        while(t->next!=NULL)
+            t=t->next;
+        t->next=n;
+    }
+}
+void SLL::insertAtStart(int data){
+    node *n=new node;
+    n->item=data;
+    n->next=start;
+    start=n;
+}
+SLL::SLL(){
+    start=NULL;
+}
