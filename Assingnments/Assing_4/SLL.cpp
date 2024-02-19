@@ -18,7 +18,35 @@ class SLL
         void insertAfter(node *,int);
         void deleteFirst();
         void deleteLast();
+        void deleteNode(node *);
+        ~SLL();
 };
+SLL::~SLL(){
+    while(start)
+        deleteFirst();
+}
+void SLL::deleteNode(node *temp){
+    node *t;
+    if(start==NULL)
+        cout<<"UderFlow";
+    else{
+        if(temp){
+            if(start==temp){
+                start=temp->next;
+                delete temp;
+            }
+            else{
+                t=start;
+                while(t->next!=temp)
+                    t=t->next;
+                t->next=temp->next;
+                delete temp;
+            }
+        }
+    }
+
+
+}
 void SLL::deleteLast(){
     node *t;
     if(start==NULL){
@@ -32,8 +60,8 @@ void SLL::deleteLast(){
         t=start;
         while(t->next->next!=NULL)
             t=t->next;
-        delete t->next;
-        t->next=NULL;
+        delete t->next;     //Deleleing last node
+        t->next=NULL;            
     }
 
 }
