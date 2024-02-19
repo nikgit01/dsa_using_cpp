@@ -17,7 +17,26 @@ class SLL
         node* search(int);
         void insertAfter(node *,int);
         void deleteFirst();
+        void deleteLast();
 };
+void SLL::deleteLast(){
+    node *t;
+    if(start==NULL){
+        cout<<"\nUnderflow\n";
+    }
+    else if(start->next==NULL){
+        delete start;
+        start=NULL;
+    }
+    else{
+        t=start;
+        while(t->next->next!=NULL)
+            t=t->next;
+        delete t->next;
+        t->next=NULL;
+    }
+
+}
 void SLL::deleteFirst(){
     node *t;
     if(start){
