@@ -25,7 +25,7 @@ SLL::~SLL(){
     while(start)
         deleteFirst();
 }
-void SLL::deleteNode(node *temp){
+void SLL::deleteNode(node *temp){   // importent deletion methode
     node *t;
     if(start==NULL)
         cout<<"UderFlow";
