@@ -70,7 +70,7 @@ node* DLL::search(int data){
     }
     return NULL;
 }
-void DLL::insertLast(int data){    
+void DLL::insertLast(int data){    // Required modification
     node *t;
     node *n=new node;
     n->item=data;
