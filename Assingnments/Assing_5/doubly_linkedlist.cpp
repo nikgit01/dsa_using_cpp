@@ -13,8 +13,8 @@ class DLL
         node *start;
     public:
         DLL();
-        void insertFirst(int);
-        void insertLast(int);
+        void insertAtFirst(int);
+        void insertAtLast(int);
         node* search(int);
         void insertAfterNode(node *,int);
         void deleteFirst();
@@ -26,39 +26,49 @@ DLL::~DLL(){
     while(start!=NULL)
         deleteFirst();
 }
-void DLL::deleteNode(node *ptr){
-    ptr->prev->next=ptr->next;
-    ptr->next->prev=ptr->prev;
-    delete ptr;
+void DLL::deleteNode(node *temp){
+    if(start){
+        if(temp->prev)
+            temp->prev->next=temp->next;
+        else
+            start=temp->next;
+        if(temp->prev)
+            temp->next->prev=temp->prev;
+    delete temp;
+    }
 }
 void DLL::deleteLast(){
-    node *t;
-    t=start;
-    if(start==NULL)
-        cout<<"\n UnderFlow\n";
-    else{
+    if(start){
+        node *t;
+        t=start;
         while(t->next!=NULL)
             t=t->next;
-        t->prev->next=NULL;
+        if(t->prev)
+            t->prev->next=NULL;
+        else
+            start=NULL;
         delete t;
     }
 }
-void DLL::deleteFirst(){
-    node *t;
-    t=start;
-    if(start==NULL)
-        cout<<"\nUnderFlow";
-    start=t->next;
-    t->next->prev=NULL;
-    delete t;  
+void DLL::deleteFirst(){  // Question 7
+    if(start){
+        node *r=start;
+        start=start->next;
+        if(r->next)
+            start->prev=NULL;
+        delete r;
+    }
 }
-void DLL::insertAfterNode(node *ptr,int data){
-    node *n=new node;
-    n->item=data;
-    n->prev=ptr;
-    n->next=ptr->next;
-    n->next->prev=n;
-    ptr->next=n;
+void DLL::insertAfterNode(node *temp,int data){
+    if(temp){
+        node *n=new node;
+        n->item=data;
+        n->prev=temp;
+        n->next=temp->next;
+        if(temp->next)
+            temp->next->prev=n;
+        temp->next=n;
+    }
 }
 node* DLL::search(int data){
     node *t;
@@ -70,18 +80,24 @@ node* DLL::search(int data){
     }
     return NULL;
 }
-void DLL::insertLast(int data){    // Required modification
+void DLL::insertAtLast(int data){
     node *t;
     node *n=new node;
     n->item=data;
     n->next=NULL;
-    t=start;
-    while(t->next!=NULL)
-        t=t->next;
-    n->prev=t;
-    t->next=n;
+    if(start=NULL){
+        n->prev=start;
+        start=n;
+    }
+    else{
+        t=start;
+        while(t->next!=NULL)
+            t=t->next;
+        n->prev=t; 
+        t->next=n;
+    }
 }
-void DLL::insertFirst(int data){
+void DLL::insertAtFirst(int data){
     node *n=new node;
     n->item=data;
     n->prev=NULL;
