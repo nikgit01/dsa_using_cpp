@@ -16,9 +16,10 @@ class CDLL
         void insertAtFirst(int);
         void insertAtLast(int);
 };
-void CDLL::insertAtLast(int data){
+void CDLL::insertAtLast(int data){    // need update
     node *n=new node;
     if(start){
+
         n->prev = start->prev;
         n->next = start;
         n->next->prev = n;
@@ -33,19 +34,17 @@ void CDLL::insertAtLast(int data){
 void CDLL::insertAtfirst(int data){
     node *n=new node;
     n->item=data;
-    if(start){
-        n->prev=start->prev;
-        n->next=start;
-        start->prev=n;
-        if(start->next==start)
-            start->next=n;
-        n->prev->next = n;
+    if(start==NULL){
+        n->next=n;
+        n->prev=n;
         start=n;
     }
     else{
-        n->prev=n;
-        n->next=n;
-        start=n;
+        n->prev = start->prev;
+        n->next = start;
+        start->prev->next=n;
+        start->prev=n;
+
     }
 }
 CDLL::CDLL(){
