@@ -12,39 +12,49 @@ class CDLL
     private:
         node *start;
     public:
-        CDLL();
-        void insertAtFirst(int);
+        CDLL();  
+        void insertAtStart(int);
         void insertAtLast(int);
         node* search(int);
         void insertAfter(node*,int);
         void deleteFirst();
         void deleteLast();
-        void deleteNode(node*);
+        void deleteNode(node *);
         ~CDLL();
 };
-CDLL::~CDLL(){
-        while(start!=NULL)
-            deleteFirst();
+CDLL::~CDLL()
+{
+    while(start)
+        deleteFirst();
 }
-void CDLL::deleteNode(node *temp){
-    if(temp){
+void CDLL::deleteNode(node *temp)
+{
+    if(temp)
+    {
         if(start==start->next)
             start=NULL;
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        if(start==temp)
-            start=temp->next;
+        else
+        {
+            temp->prev->next=temp->next;
+            temp->next->prev=temp->prev;
+            if(start==temp)
+                start=temp->next;
+        }
         delete temp;
     }
 }
-void CDLL::deleteLast(){
+void CDLL::deleteLast()
+{
     node *r;
-    if(start){
-        if(start->prev=start){
+    if(start)
+    {
+        if(start->prev==start)
+        {
             delete start;
             start=NULL;
         }
-        else{
+        else
+        {
             r=start->prev;
             r->prev->next=start;
             start->prev=r->prev;
@@ -52,23 +62,28 @@ void CDLL::deleteLast(){
         }
     }
 }
-void CDLL::deleteFirst(){
+void CDLL::deleteFirst()
+{
     node *r;
-    if(start){
+    if(start)
+    {
         r=start;
-        
-        r->prev->next=r->next;
+
         r->next->prev=r->prev;
+        r->prev->next=r->next;
         if(start->next==start)
-            start==NULL;
+            start=NULL;
         else
             start=r->next;
         delete r;
     }
 }
-void CDLL::insertAfter(node* temp,int data){
+void CDLL::insertAfter(node *temp,int data)
+{
+    
+    if(temp)
+    {
         node *n=new node;
-    if(temp){
         n->item=data;
         n->prev=temp;
         n->next=temp->next;
@@ -76,50 +91,59 @@ void CDLL::insertAfter(node* temp,int data){
         temp->next=n;
     }
 }
-node*::CDLL::search(int data){
+node* CDLL::search(int data)
+{
     node *t;
     t=start;
-    if(t){
-        do{
-            if(t->item==data)
-                return t;
-            t=t->next
+    if(t)
+    {
+        do
+        {
+         if(t->item==data)
+            return t;
+         t=t->next;
         }while(t!=start);
     }
     return NULL;
 }
-void CDLL::insertAtLast(int data){   
+void CDLL::insertAtLast(int data)
+{
     node *n=new node;
     n->item=data;
-    if(start==NULL){
-        n->prev=n;
+    if(start==NULL)
+    {
         n->next=n;
+        n->prev=n;
         start=n;
     }
-    else{
+    else
+    {
         n->prev=start->prev;
-        n->next = start;
+        n->next=start;
         start->prev->next=n;
-        start->prev=n; 
+        start->prev=n;
     }
 }
-void CDLL::insertAtfirst(int data){
+void CDLL::insertAtStart(int data)
+{
     node *n=new node;
     n->item=data;
-    if(start==NULL){
+    if(start==NULL)
+    {
         n->next=n;
         n->prev=n;
         start=n;
     }
-    else{
-        n->prev = start->prev;
-        n->next = start;
+    else
+    {
+        n->prev=start->prev;
+        n->next=start;
         start->prev->next=n;
         start->prev=n;
         start=n;
-
     }
 }
-CDLL::CDLL(){
+CDLL::CDLL()
+{
     start=NULL;
 }
