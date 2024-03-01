@@ -12,6 +12,7 @@ int countList(SLL &s){
     }
     return count;    
 }
+
 int main()
 {
     SLL s1,s2;
