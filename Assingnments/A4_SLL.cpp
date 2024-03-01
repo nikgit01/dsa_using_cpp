@@ -20,7 +20,20 @@ class SLL
         void deleteLast();
         void deleteNode(node *);
         ~SLL();
+        node* getFirstNode();
+        void printList();
 };
+void SLL::printList(){
+    node*t=start;
+    while(t->next!=NULL){
+        cout<<" "<<t->item;
+        t=t->next;
+    }
+    cout<<endl;
+}
+node* SLL::getFirstNode(){
+    return start;
+}
 SLL::~SLL(){
     while(start)
         deleteFirst();

@@ -1,12 +1,27 @@
 #include<iostream>
-#include "SLL.cpp"
+#include "A4_SLL.cpp"
 using namespace std;
-int countList(){
+
+int countList(SLL &s){
     node *t;
-    t=start;
-    int count=0;
-    while(t->next!=nullptr)
-        count++;
-    t=t->next;
-    return t;  
+    t=s.getFirstNode();
+    int count=1;
+    while(t->next!=nullptr){
+         count++;
+         t=t->next;
+    }
+    return count;    
+}
+int main()
+{
+    SLL s1,s2;
+    s1.insertAtLast(10);
+    s1.insertAtLast(20);
+    s1.insertAtLast(30);
+    s1.insertAtLast(40);
+    s1.insertAtLast(50);
+    s1.insertAtLast(60);
+    cout<<"S1: "<<countList(s1)<<endl;
+    s1.printList();
+    return 0;
 }
