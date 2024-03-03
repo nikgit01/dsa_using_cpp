@@ -12,12 +12,6 @@ int countList(SLL &s){
     }
     return count;    
 }
-void reverseList(){
-    if(start){
-        node *t1=start, *t2 = start->next, *t3 = t2->next;
-        
-    }
-}
 
 //             Main function
 int main()
@@ -28,8 +22,9 @@ int main()
     s1.insertAtLast(30);
     s1.insertAtLast(40);
     s1.insertAtLast(50);
-    s1.insertAtLast(60);
     cout<<"S1: "<<countList(s1)<<endl;
+    s1.printList();
+    s1.reverseList();
     s1.printList();
     return 0;
 }

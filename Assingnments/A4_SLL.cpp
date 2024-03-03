@@ -22,14 +22,32 @@ class SLL
         ~SLL();
         node* getFirstNode();
         void printList();
+        void reverseList();
 };
-void SLL::printList(){
-    node*t=start;
-    while(t->next!=NULL){
-        cout<<" "<<t->item;
-        t=t->next;
+void SLL::reverseList(){
+        node *t;
+    t=start;
+    if(t){
+        node *t1= NULL, *t2 = t, *t3;
+        t3 = t->next;
+        while(t3){
+            t2->next=t1;
+            t1=t2;
+            t2=t3;
+            t3=t3->next;
+        }
+        t2->next=t1;
+        start=t2;
+        
     }
-    cout<<endl;
+}
+void SLL::printList() {
+    node* t = start;
+    while (t != NULL) {
+        cout << " " << t->item;
+        t = t->next;
+    }
+    cout << endl;
 }
 node* SLL::getFirstNode(){
     return start;
