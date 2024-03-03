@@ -12,7 +12,14 @@ int countList(SLL &s){
     }
     return count;    
 }
+void reverseList(){
+    if(start){
+        node *t1=start, *t2 = start->next, *t3 = t2->next;
+        
+    }
+}
 
+//             Main function
 int main()
 {
     SLL s1,s2;
