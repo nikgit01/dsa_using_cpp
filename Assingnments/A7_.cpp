@@ -1,6 +1,4 @@
-#include<iostream>
 #include "A4_SLL.cpp"
-using namespace std;
 
 int countList(SLL &s){
     node *t;
