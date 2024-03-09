@@ -7,6 +7,7 @@ class Array{
         int *ptr;
     public:
         Array(int);
+        Array(Array &);
         bool isEmpty();
         void append(int);
         void insert(int,int);
@@ -162,6 +163,13 @@ void Array::append(int data)
 bool Array::isEmpty()
 {
     return lastIndex==-1;
+}
+Array::Array(Array &arr){
+    capacity=arr.capacity;
+    lastIndex=arr.lastIndex;
+    ptr=new int[capacity];
+    for(int i=o;i<=lastIndex;i++)
+        ptr[i]=arr.ptr[i];
 }
 Array::Array(int cap)
 {

@@ -11,7 +11,11 @@ class Stack : private Array
         ~Stack();
         virtual bool isFull();
         virtual bool isEmpty();
+        stack(stack &);
 };
+Stack::stack(Array &S){
+
+}
 bool Stack::isEmpty(){
     return Array::isEmpty();
 }
@@ -39,17 +43,17 @@ void Stack::push(int data){
         append(data);
 }
 Stack::Stack(int cap):Array(cap){ }
+reverseStack()
 
 int main()
 {
-    Stack s(10);
+    Stack s(5);
 
     s.push(10);
     s.push(20);
     s.push(30);
     s.push(40);
     s.push(50);
-    s.push(60);
-    s.push(70);
     cout<<"last element of stack is : "<<s.peek()<<endl;
+    return 0;
 }
