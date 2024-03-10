@@ -26,8 +26,22 @@ class Array{
         int avarage();
         void rotate();
         void duplicatDelete();
-
+        int getcapacity();
+        void operator=(Array &);
 };
+
+void Array::operator=(Array &arr){  // deep copy
+    capacity=arr.capacity;
+    lastIndex=arr.lastIndex;
+    if(ptr!=NULL)
+        delete []ptr;
+    ptr=new int[capacity];
+    for(int i=0;i<=lastIndex;i++)
+        ptr[i]=arr.ptr[i];
+}
+int Array::getcapacity(){
+    return capacity;
+}
 void Array::duplicatDelete() {
     for(int i = 0; i <= lastIndex; i++) {
         for(int j = i + 1; j <= lastIndex; j++) {
@@ -128,7 +142,7 @@ void Array::del(int index) {
         for (int i = index; i < lastIndex; i++)
             ptr[i] = ptr[i + 1];
         lastIndex--;
-        cout << endl << "Element at index " << index << " deleted.";
+        // cout << endl << "Element at index " << index << " deleted.";
     }
 }
 
@@ -168,7 +182,7 @@ Array::Array(Array &arr){
     capacity=arr.capacity;
     lastIndex=arr.lastIndex;
     ptr=new int[capacity];
-    for(int i=o;i<=lastIndex;i++)
+    for(int i=0;i<=lastIndex;i++)
         ptr[i]=arr.ptr[i];
 }
 Array::Array(int cap)
