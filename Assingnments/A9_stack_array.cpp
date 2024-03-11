@@ -15,7 +15,7 @@ class Stack : private Array
         int getStackSize();
         void operator=(Stack &);
 };
-void Stack::operator=(Stack &s){
+void Stack::operator=(Stack &s){ // operator overloading
     Array::operator=(s);
 }
 int Stack::getStackSize(){
