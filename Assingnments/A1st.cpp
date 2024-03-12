@@ -178,14 +178,14 @@ bool Array::isEmpty()
 {
     return lastIndex==-1;
 }
-Array::Array(Array &arr){
+Array::Array(Array &arr){    // copy constructure
     capacity=arr.capacity;
     lastIndex=arr.lastIndex;
     ptr=new int[capacity];
     for(int i=0;i<=lastIndex;i++)
         ptr[i]=arr.ptr[i];
 }
-Array::Array(int cap)
+Array::Array(int cap) 
 {
     capacity=cap;
     lastIndex= -1;
