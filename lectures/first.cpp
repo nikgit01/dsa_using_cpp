@@ -2,5 +2,13 @@
 using namespace std;
 int main()
 {
-    cout<<"Star DSA"<<endl;
+    for(int i=0; i<=6; i++){
+        for(int j=i-1; j<6; j++){
+            cout<<"* ";
+        }
+        cout<<" ";
+        cout<<endl;
+    }
+    
+    return 0;
 }
