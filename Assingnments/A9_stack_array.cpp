@@ -14,6 +14,8 @@ class Stack : private Array
         Stack(Stack &);
         int getStackSize();
         void operator=(Stack &);
+        void print_stack();
+        int minValue();
 };
 void Stack::operator=(Stack &s){ // operator overloading
     Array::operator=(s);
@@ -60,7 +62,18 @@ void reverseStack(Stack &s1){
     }
     s1=s2;
 }
+void Stack::print_stack() {
+    if (isEmpty()) {
+        cout << "Stack is empty" << endl;
+        return;
+    }
 
+    // Start from the top of the stack and print each element
+    for (int i = count() - 1; i >= 0; --i) {
+        cout << get(i) << " ";
+    }
+    cout << endl;
+}
 int main()
 {
     Stack s(5);
@@ -71,7 +84,9 @@ int main()
     s.push(40);
     s.push(50);
     cout<<"last element of stack is : "<<s.peek()<<endl;
+    s.print_stack();
     reverseStack(s);
     cout<<"last element of stack is : "<<s.peek()<<endl;
+    s.print_stack();
     return 0;
 }
