@@ -11,6 +11,7 @@ class Stack{
         node *top;
     public:
         Stack();
+        Stack(Stack&);
         void push(int);
         bool isEmpty();
         int peek();
@@ -18,20 +19,9 @@ class Stack{
         ~Stack();
         void reverseStack();
         bool ispalindrome(int);
+        Stack operator=() // not compeletd
 };
-void Stack::reverseStack(){
-    node *t1,*t2;
-    if(top && top->next){
-        t2=NULL;
-        do{
-            t1=top;
-            top=top->next;
-            t1->next=t2;
-            t2=t1;
-        }while(top->next!=NULL);
-        top->next=t1;
-    }
-}
+
 Stack::~Stack(){
     while(top!=NULL)
         pop();
@@ -65,9 +55,34 @@ void Stack::push(int data){
     n->next=top; 
     top=n;
 }
+void reverse(Stack &s1){   //Reversing a stack without makeing member function
+    Stack s2;
+    while(!s1.isEmpty()){
+        s2.push(s1.peek());
+        s1.pop();
+    }
+    s1=s2;
+}
 Stack::Stack(){
     top=NULL;
 }
+Stack::Stack(Stack &S){    // copy constructer of deep copy
+    node *t,*n,*p;
+    p=NULL;
+    t=s.top;
+  while(x;){
+        n=new node();\
+        n->item=t->item;
+        if(top=NULL)
+            top=n;
+        else
+            p->next=n;
+        t=t->next;
+        p=n;
+    }
+    p->next=NULL;
+}
+
 int len(int x){
     int count=0;
     while(x){
@@ -75,6 +90,19 @@ int len(int x){
         count++;
     }
     return count;
+}
+void Stack::reverseStack(){
+    node *t1,*t2;
+    if(top && top->next){
+        t2=NULL;
+        do{
+            t1=top;
+            top=top->next;
+            t1->next=t2;
+            t2=t1;
+        }while(top->next!=NULL);
+        top->next=t1;
+    }
 }
 bool Stack::ispalindrome(int x){
     Stack s1;
