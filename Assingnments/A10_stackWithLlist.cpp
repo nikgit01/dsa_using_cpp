@@ -19,18 +19,64 @@ class Stack{
         ~Stack();
         void reverseStack();
         bool ispalindrome(int);
-        Stack operator=() // not compeletd
+        void printStack();
+        void operator=(Stack&);
 };
-
+void Stack::operator=(Stack &S)
+{
+    node *t,*n,*p=NULL;
+    t=S.top;
+    while(t)
+    {
+        n=new node;
+        n->item=t->item;
+        if(top==NULL)
+            top=n;
+        else
+            p->next=n;
+        t=t->next;
+        p=n;
+    }
+    if(p!=NULL)
+        p->next=NULL;
+}
+void Stack::reverseStack(){
+    node *t1,*t2;
+    if(top && top->next){
+        t2=NULL;
+        do{
+            t1=top;
+            top=top->next;
+            t1->next=t2;
+            t2=t1;
+        }while(top->next!=NULL);
+        top->next=t1;
+    }
+}
+Stack::Stack(Stack &S){    // copy constructer of deep copy
+    node *t,*n,*p;
+    p=NULL;
+    t=S.top;
+  while(t){
+        n=new node();\
+        n->item=t->item;
+        if(top=NULL)
+            top=n;
+        else
+            p->next=n;
+        t=t->next;
+        p=n;
+    }
+    p->next=NULL;
+}
 Stack::~Stack(){
-    while(top!=NULL)
+    while(top)
         pop();
 }
 void Stack::pop(){
     node *t;  
-    if(top==NULL){
+    if(isEmpty())
         cout<<"\nStack Underflow";
-    }
     else{
         t=top;
         top=top->next;
@@ -66,22 +112,6 @@ void reverse(Stack &s1){   //Reversing a stack without makeing member function
 Stack::Stack(){
     top=NULL;
 }
-Stack::Stack(Stack &S){    // copy constructer of deep copy
-    node *t,*n,*p;
-    p=NULL;
-    t=s.top;
-  while(x;){
-        n=new node();\
-        n->item=t->item;
-        if(top=NULL)
-            top=n;
-        else
-            p->next=n;
-        t=t->next;
-        p=n;
-    }
-    p->next=NULL;
-}
 
 int len(int x){
     int count=0;
@@ -91,21 +121,8 @@ int len(int x){
     }
     return count;
 }
-void Stack::reverseStack(){
-    node *t1,*t2;
-    if(top && top->next){
-        t2=NULL;
-        do{
-            t1=top;
-            top=top->next;
-            t1->next=t2;
-            t2=t1;
-        }while(top->next!=NULL);
-        top->next=t1;
-    }
-}
 bool Stack::ispalindrome(int x){
-    Stack s1;
+    Stack s;
     int l=len(x);
     int i=l/2;
     while(i){
@@ -117,11 +134,28 @@ bool Stack::ispalindrome(int x){
         x/10;
     while(x){
         if(x%10==s.peek()){
-            s.pop;
+            s.pop();
             x/10;    
         }
         else
             return false; 
     }
     return true; 
+}
+void Stack::printStack(){
+    reverseStack();
+    while(!isEmpty()){
+        cout<<" "<<peek();
+        pop();
+    }
+}
+int main()
+{
+    Stack s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(40);
+    s1.printStack();
+    return 0;
 }

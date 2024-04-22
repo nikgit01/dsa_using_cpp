@@ -18,6 +18,7 @@ class Stack{
         ~Stack();
         void reverse();
         void operator=(Stack &S);
+        void printStack(Stack&);
 };
 void Stack::operator=(Stack &S)
 {
@@ -114,7 +115,7 @@ Stack::Stack()
 {
     top=NULL;
 }
-void reverse(Stack &s1)
+void reverse1(Stack &s1)
 {
     Stack s2;
     while(!s1.isEmpty())
@@ -158,4 +159,21 @@ bool isPalindrome(int x)
             return false;
     }
     return true;
+}
+void Stack::printStack(Stack& t){
+     reverse1(t);
+    while(!isEmpty()){
+        cout<<" "<<peek();
+        pop();
+    }
+}
+int main()
+{
+    Stack s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(40);
+    s1.printStack(s1);
+    return 0;
 }
